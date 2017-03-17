@@ -31,7 +31,7 @@ interface TokenSecretRepository
      * @param  array  $data
      * @return Token
      */
-    public function createToken($user, $name, array $data = []);
+    public function createToken($user, $name, $site, array $data = []);
 
     /**
      * Create a new token cookie.

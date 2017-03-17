@@ -35,7 +35,7 @@ class TokenSecretRepository implements Contract
     /**
      * {@inheritdoc}
      */
-    public function createToken($user, $name, array $data = [])
+    public function createToken($user, $name, $site, array $data = [])
     {
         $this->deleteExpiredTokens($user);
 
@@ -43,7 +43,9 @@ class TokenSecretRepository implements Contract
             'id' => Uuid::uuid4(),
             'user_id' => $user->id,
             'name' => $name,
-            'token' => str_random(60),
+            'site' => $site,
+            'token' => 'tk_' . str_random(60),
+            'secret' => 'sc_' . str_random(60),
             'metadata' => $data,
             'transient' => false,
             'expires_at' => null,
