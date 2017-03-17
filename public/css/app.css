@@ -9068,3 +9068,7 @@ body {
 [v-cloak] {
   display: none;
 }
+
+.token-display {
+  font-family: monospace;
+}

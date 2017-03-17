@@ -28888,7 +28888,7 @@ Vue.component('spark-create-token', {
 /* 168 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var base = __webpack_require__(222);
+/* WEBPACK VAR INJECTION */(function($) {var base = __webpack_require__(222);
 
 Vue.component('spark-tokens', {
     mixins: [base],
@@ -28908,8 +28908,26 @@ Vue.component('spark-tokens', {
 
             deleteTokenForm: new SparkForm({})
         };
+    },
+
+    computed: {
+        copyCommandSupported: function copyCommandSupported() {
+            return document.queryCommandSupported('copy');
+        }
+    },
+    methods: {
+        /**
+         * Select the secret and copy to Clipboard.
+         */
+        selectContent: function selectContent(event) {
+            $(event.target).select();
+            if (this.copyCommandSupported) {
+                document.execCommand("copy");
+            }
+        }
     }
 });
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ }),
 /* 169 */
