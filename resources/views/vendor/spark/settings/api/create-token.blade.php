@@ -20,6 +20,19 @@
                         </div>
                     </div>
 
+                     <!-- Token Site -->
+                    <div class="form-group" :class="{'has-error': form.errors.has('site')}">
+                        <label class="col-md-4 control-label">Token Site</label>
+
+                        <div class="col-md-6">
+                            <input type="text" class="form-control" name="site" v-model="form.site">
+
+                            <span class="help-block" v-show="form.errors.has('site')">
+                                @{{ form.errors.get('site') }}
+                            </span>
+                        </div>
+                    </div>
+
                     <!-- Mass Ability Assignment / Removal -->
                     <div class="form-group" v-if="availableAbilities.length > 0">
                         <label class="col-md-4 control-label">&nbsp;</label>
