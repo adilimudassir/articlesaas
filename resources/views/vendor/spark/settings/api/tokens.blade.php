@@ -6,25 +6,14 @@
 
                 <div class="panel-body">
                     <table class="table table-borderless m-b-none">
-                        <thead>
-                            <th>Name</th>
-                            <th>Last Used</th>
-                            <th></th>
-                            <th></th>
-                        </thead>
-
                         <tbody>
                             <tr v-for="token in tokens">
                                 <!-- Name -->
                                 <td>
                                     <div class="btn-table-align">
-                                        @{{ token.name }}
-                                    </div>
-                                </td>
+                                        <strong>Name: </strong>@{{ token.name }},
 
-                                <!-- Last Used At -->
-                                <td>
-                                    <div class="btn-table-align">
+                                        <strong>Last used: </strong>
                                         <span v-if="token.last_used_at">
                                             @{{ token.last_used_at | datetime }}
                                         </span>
@@ -33,17 +22,21 @@
                                             Never
                                         </span>
                                     </div>
-                                </td>
 
-                                <!-- Edit Button -->
-                                <td>
+                                    <div class="btn-table-align">
+                                        <strong>Site: </strong> @{{ token.site }}
+                                    </div>
+
+                                    <div class="btn-table-align">
+                                        <strong>Token: </strong> @{{ token.token }}
+                                    </div>
+
+                                    <div class="btn-table-align">
+                                        <strong>Secret: </strong>@{{ token.secret }}
+                                    </div>
                                     <button class="btn btn-primary" @click="editToken(token)">
                                         <i class="fa fa-pencil"></i>
                                     </button>
-                                </td>
-
-                                <!-- Delete Button -->
-                                <td>
                                     <button class="btn btn-danger-outline" @click="approveTokenDelete(token)">
                                         <i class="fa fa-times"></i>
                                     </button>
