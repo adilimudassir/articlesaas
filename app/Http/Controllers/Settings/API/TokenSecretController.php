@@ -7,8 +7,8 @@ use Laravel\Spark\Spark;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Contracts\Repositories\TokenSecretRepository;
-use Laravel\Spark\Http\Requests\Settings\API\CreateTokenRequest;
-use Laravel\Spark\Http\Requests\Settings\API\UpdateTokenRequest;
+use App\Http\Requests\Settings\API\CreateTokenSecretRequest;
+use App\Http\Requests\Settings\API\UpdateTokenSecretRequest;
 
 class TokenSecretController extends Controller
 {
@@ -49,7 +49,7 @@ class TokenSecretController extends Controller
      * @param  CreateTokenRequest  $request
      * @return Response
      */
-    public function store(CreateTokenRequest $request)
+    public function store(CreateTokenSecretRequest $request)
     {
         $data = count(Spark::tokensCan()) > 0 ? ['abilities' => $request->abilities] : [];
 
@@ -65,7 +65,7 @@ class TokenSecretController extends Controller
      * @param  string  $tokenId
      * @return Response
      */
-    public function update(UpdateTokenRequest $request, $tokenId)
+    public function update(UpdateTokenSecretRequest $request, $tokenId)
     {
         $token = $request->user()->tokens()->where('id', $tokenId)->firstOrFail();
 
