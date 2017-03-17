@@ -53,9 +53,14 @@ class TokenSecretController extends Controller
     {
         $data = count(Spark::tokensCan()) > 0 ? ['abilities' => $request->abilities] : [];
 
-        return response()->json(['token' => $this->tokens->createToken(
+        $token = $this->tokens->createToken(
             $request->user(), $request->name, $request->site, $data
-        )->token]);
+        );
+
+        return response()->json([
+            'token' => $token->token,
+            'secret' => $token->secret
+        ]);
     }
 
     /**

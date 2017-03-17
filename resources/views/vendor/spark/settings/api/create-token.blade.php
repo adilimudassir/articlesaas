@@ -100,22 +100,25 @@
 
                     <div class="modal-body">
                         <div class="alert alert-warning">
-                            Here is your new API token. <strong>This is the only time the token will ever
-                            be displayed, so be sure not to lose it!</strong> You may revoke the token
-                            at any time from your API settings.
+                            <p>Here is your new API token. You may revoke the token at any time from your API settings.</p>
+                            <p>
+                                <span v-if="copyCommandSupported">Clicking on the token or the secret will copy them on the clipboard.</span>
+                                <span v-else>You have to manually select and copy the token and the secret.</span>
+                            </p>
+                            <p>Don’t worry, they will remain accessible to you in the future.</p>
                         </div>
-
+                        <label for="api-token">Token</label>
                         <textarea id="api-token" class="form-control"
                                   @click="selectToken"
-                                  rows="5">@{{ showingToken }}</textarea>
-                    </div>
+                                  rows="2">@{{ showingToken.token }}</textarea>
 
+                        <label for="api-secret">Secret</label>
+                        <textarea id="api-secret" class="form-control"
+                                  @click="selectSecret"
+                                  rows="2">@{{ showingToken.secret }}</textarea>
+                    </div>
                     <!-- Modal Actions -->
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-primary" @click="selectToken">
-                        <span v-if="copyCommandSupported">Copy To Clipboard</span>
-                        <span v-else>Select All</span>
-                        </button>
                         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                     </div>
                 </div>
