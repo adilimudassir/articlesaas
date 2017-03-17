@@ -28837,7 +28837,7 @@ Vue.component('spark-api', {
 /* 167 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var base = __webpack_require__(221);
+/* WEBPACK VAR INJECTION */(function($) {var base = __webpack_require__(221);
 
 Vue.component('spark-create-token', {
     mixins: [base],
@@ -28852,9 +28852,37 @@ Vue.component('spark-create-token', {
             this.assignDefaultAbilities();
 
             this.allAbilitiesAssigned = false;
+        },
+
+        /**
+         * Create a new API token.
+         */
+        create: function create() {
+            var _this = this;
+
+            Spark.post('/settings/api/token', this.form).then(function (response) {
+                console.log(response);
+                _this.showToken({ 'token': response.token, 'secret': response.secret });
+
+                _this.resetForm();
+
+                _this.$parent.$emit('updateTokens');
+            });
+        },
+
+        /**
+         * Select the secret and copy to Clipboard.
+         */
+        selectSecret: function selectSecret() {
+            $('#api-secret').select();
+
+            if (this.copyCommandSupported) {
+                document.execCommand("copy");
+            }
         }
     }
 });
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ }),
 /* 168 */
