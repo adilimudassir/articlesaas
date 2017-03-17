@@ -28840,7 +28840,20 @@ Vue.component('spark-api', {
 var base = __webpack_require__(221);
 
 Vue.component('spark-create-token', {
-    mixins: [base]
+    mixins: [base],
+    methods: {
+        /**
+         * Reset the token form back to its default state.
+         */
+        resetForm: function resetForm() {
+            this.form.name = '';
+            this.form.site = '';
+
+            this.assignDefaultAbilities();
+
+            this.allAbilitiesAssigned = false;
+        }
+    }
 });
 
 /***/ }),
@@ -28850,7 +28863,24 @@ Vue.component('spark-create-token', {
 var base = __webpack_require__(222);
 
 Vue.component('spark-tokens', {
-    mixins: [base]
+    mixins: [base],
+    /**
+     * The component's data.
+     */
+    data: function data() {
+        return {
+            updatingToken: null,
+            deletingToken: null,
+
+            updateTokenForm: new SparkForm({
+                name: '',
+                site: '',
+                abilities: []
+            }),
+
+            deleteTokenForm: new SparkForm({})
+        };
+    }
 });
 
 /***/ }),
