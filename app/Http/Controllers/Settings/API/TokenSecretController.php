@@ -6,7 +6,7 @@ use Laravel\Spark\Token;
 use Laravel\Spark\Spark;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use Laravel\Spark\Contracts\Repositories\TokenRepository;
+use App\Contracts\Repositories\TokenSecretRepository;
 use Laravel\Spark\Http\Requests\Settings\API\CreateTokenRequest;
 use Laravel\Spark\Http\Requests\Settings\API\UpdateTokenRequest;
 
@@ -25,7 +25,7 @@ class TokenSecretController extends Controller
      * @param  TokenRepository  $tokens
      * @return void
      */
-    public function __construct(TokenRepository $tokens)
+    public function __construct(TokenSecretRepository $tokens)
     {
         $this->tokens = $tokens;
 
