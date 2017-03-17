@@ -11,16 +11,15 @@
                                 <!-- Name -->
                                 <td>
                                     <div class="btn-table-align">
-                                        <strong>Name: </strong>@{{ token.name }},
+                                        <p class="h3">@{{ token.name }} <small>Last used:
+                                            <span v-if="token.last_used_at">
+                                                @{{ token.last_used_at | datetime }}
+                                            </span>
 
-                                        <strong>Last used: </strong>
-                                        <span v-if="token.last_used_at">
-                                            @{{ token.last_used_at | datetime }}
-                                        </span>
-
-                                        <span v-else>
-                                            Never
-                                        </span>
+                                            <span v-else>
+                                                Never
+                                            </span>
+                                        </small></p>
                                     </div>
 
                                     <div class="btn-table-align">
@@ -28,12 +27,15 @@
                                     </div>
 
                                     <div class="btn-table-align">
-                                        <strong>Token: </strong> @{{ token.token }}
+                                        <strong>Token: </strong>
+                                        <textarea readonly class="form-control token-display" rows="1" @click="selectContent($event)">@{{ token.token }}</textarea>
                                     </div>
 
                                     <div class="btn-table-align">
-                                        <strong>Secret: </strong>@{{ token.secret }}
+                                        <strong>Secret: </strong>
+                                        <textarea readonly class="form-control token-display" rows="1" @click="selectContent($event)">@{{ token.secret }}</textarea>
                                     </div>
+
                                     <button class="btn btn-primary" @click="editToken(token)">
                                         <i class="fa fa-pencil"></i>
                                     </button>

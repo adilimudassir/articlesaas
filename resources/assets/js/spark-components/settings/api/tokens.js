@@ -18,5 +18,21 @@ Vue.component('spark-tokens', {
 
             deleteTokenForm: new SparkForm({})
         }
+    },
+    computed: {
+        copyCommandSupported() {
+            return document.queryCommandSupported('copy');
+        }
+    },
+    methods: {
+        /**
+         * Select the secret and copy to Clipboard.
+         */
+        selectContent(event) {
+            $(event.target).select();
+            if (this.copyCommandSupported) {
+                document.execCommand("copy");
+            }
+        }
     }
 });
