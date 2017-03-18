@@ -25,7 +25,8 @@ class CreateApiTokensTable extends Migration
             $table->timestamp('expires_at')->nullable();
             $table->timestamps();
 
-            $table->index(['user_id', 'expires_at', 'site']);
+            $table->unique(['user_id', 'site']);
+            $table->index('expires_at');
         });
     }
 
